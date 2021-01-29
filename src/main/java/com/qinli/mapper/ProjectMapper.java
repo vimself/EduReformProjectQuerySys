@@ -1,6 +1,7 @@
 package com.qinli.mapper;
 
 import com.qinli.pojo.Project;
+import com.qinli.pojo.RawUploadProject;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface ProjectMapper {
     List<Project> selectBySalaryNum(String salaryNum);
     List<Project> selectByName(String name);
     List<Project> selectById(String id);
+
+    Boolean insertOne(RawUploadProject rawUploadProject);
 
     void deleteById(String id);
 

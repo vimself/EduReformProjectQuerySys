@@ -19,6 +19,10 @@
     select * from project where host = #{name}
     </select>
 
+    <select id="selectById" resultType="com.qinli.pojo.Project">
+    select * from project where id = #{id}
+    </select>
+
     <select id="selectMember" resultType="java.lang.String">
     select member from project where id = #{id}
     </select>

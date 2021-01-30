@@ -2,7 +2,7 @@ package com.qinli.util;
 
 import com.qinli.mapper.ProjectMapper;
 import com.qinli.pojo.Project;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.qinli.pojo.RawUploadProject;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

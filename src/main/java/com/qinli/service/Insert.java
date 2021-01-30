@@ -1,5 +1,6 @@
 package com.qinli.service;
 
+import com.qinli.pojo.Project;
 import com.qinli.pojo.RawUploadProject;
 
 /**
@@ -8,6 +9,6 @@ import com.qinli.pojo.RawUploadProject;
  */
 public interface Insert {
 
-    boolean insertOne(RawUploadProject rawUploadProject);
+    boolean insertOne(Project project);
 
 }

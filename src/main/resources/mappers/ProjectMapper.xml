@@ -11,10 +11,6 @@
     select * from project where department = #{department}
     </select>
 
-    <select id="selectBySalaryNum" resultType="com.qinli.pojo.Project">
-    select * from project where salary_number = #{salaryNum}
-    </select>
-
     <select id="selectByName" resultType="com.qinli.pojo.Project">
     select * from project where host = #{name}
     </select>
@@ -24,17 +20,19 @@
     </select>
 
     <insert id="insertOne" parameterType="com.qinli.pojo.RawUploadProject">
-        insert into project values (#{id} , #{title} , #{host} , #{department} , #{member} , #{start_time} , #{end_time} , #{project_status} , #{funds} , #{level} , #{host_school} , #{coop_school} , #{guide_id} , #{recommend} , #{code})
+        insert into project (id, title, host, department, member, start_time, end_time, project_status, funds, level, host_school, coop_school, guide_id, recommend, code)
+        values (#{id} , #{title} , #{host} , #{department} , #{member} , #{start_time} , #{end_time} , #{project_status} , #{funds} , #{level} , #{host_school} , #{coop_school} , #{guide_id} , #{recommend} , #{code})
     </insert>
+
+    <update id="updateOne" parameterType="com.qinli.pojo.RawUploadProject">
+        update project set department=#{department},end_time=#{end_time},project_status=#{project_status} where id=#{id}
+    </update>
 
     <select id="selectMember" resultType="java.lang.String">
     select member from project where id = #{id}
     </select>
     <select id="selectRank" resultType="java.lang.String">
     select rank from project where id = #{id}
-    </select>
-    <select id="selectSalaryNumber" resultType="java.lang.String">
-    select salary_number from project where id = #{id}
     </select>
 
     <delete id="deleteById">

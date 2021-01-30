@@ -18,16 +18,16 @@ public class DeleteController {
     @RequestMapping(value = "delete")
     @ResponseBody
     Map<String , Integer> delete(String[] del){
-        Map<String , Integer> result = new HashMap<String, Integer>();
+        Map<String , Integer> json = new HashMap<String, Integer>();
 
         for (String s : del){
             if (!delete.deleteById(s)) {
-                result.put("status" , 500);
-                return result;
+                json.put("status" , 500);
+                return json;
             }
         }
 
-        result.put("status" , 200);
-        return result;
+        json.put("status" , 200);
+        return json;
     }
 }

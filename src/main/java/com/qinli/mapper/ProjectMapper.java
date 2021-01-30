@@ -12,12 +12,12 @@ public interface ProjectMapper {
     List<Project> selectByName(String name);
     List<Project> selectById(String id);
 
-    Boolean insertOne(RawUploadProject rawUploadProject);
+    boolean insertOne(RawUploadProject rawUploadProject);
+
+    boolean updateOne(RawUploadProject rawUploadProject);
 
     void deleteById(String id);
 
     String selectMember(String id);
-    String selectRank(String id);
-    String selectSalaryNumber(String id);
 
 }

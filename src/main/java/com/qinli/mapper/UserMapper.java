@@ -4,5 +4,6 @@ import com.qinli.pojo.User;
 
 public interface UserMapper {
 
-    public User selectUser(String username);
+    User selectUser(String username , String pwd);
+    User isExist(String username);
 }

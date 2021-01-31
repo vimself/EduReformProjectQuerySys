@@ -1,8 +1,22 @@
 package com.qinli.pojo;
 
+/**
+ * @author supermantx
+ * @time 2021/1/25 12:37
+ * 登陆用户对象
+ */
 public class User {
-    private String username;
-    private String pwd;
+    String username;
+    String pwd;
+    String authority;
+
+    public User() {
+    }
+
+    public User(String username, String pwd) {
+        this.username = username;
+        this.pwd = pwd;
+    }
 
     public String getUsername() {
         return username;
@@ -20,11 +34,20 @@ public class User {
         this.pwd = pwd;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", pwd='" + pwd + '\'' +
+                ", authority='" + authority + '\'' +
                 '}';
     }
 }

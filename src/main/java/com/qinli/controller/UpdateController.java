@@ -10,12 +10,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 修改已有项目相关操作
+ */
 @Controller
 public class UpdateController {
 
     @Autowired
     Update update;
 
+    /**
+     * 修改单个项目
+     * @param project 修改后的项目信息
+     * @return 操作状态
+     */
     @RequestMapping(value = "update")
     @ResponseBody
     Map<String , Integer> update(Project project){

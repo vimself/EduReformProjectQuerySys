@@ -15,6 +15,7 @@ import java.util.Map;
 /**
  * @Author Cambria
  * @creat 2021/1/29 11:15
+ * 添加项目相关操作
  */
 @Controller
 public class InsertController {
@@ -22,6 +23,11 @@ public class InsertController {
     @Autowired
     Insert insert;
 
+    /**
+     * 目前仅有添加单个项目的接口
+     * @param project 要添加的项目
+     * @return 操作状态
+     */
     @RequestMapping(value = "insert")
     @ResponseBody
     Map<String , Integer> insert(@RequestBody Project project){

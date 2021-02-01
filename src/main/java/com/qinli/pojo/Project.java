@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 由查询数据库得到的project封装对象，其中member属性需经工具类com.qinli.util.ProjectClassPackUtil#projectClassPack(java.util.List, com.qinli.mapper.ProjectMapper)处理
+ */
 public class Project {
     private String id;
     private String title;

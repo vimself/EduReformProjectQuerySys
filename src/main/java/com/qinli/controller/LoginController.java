@@ -1,6 +1,6 @@
 package com.qinli.controller;
 
-import com.qinli.pojo.LoginValue;
+import com.qinli.pojo.LoginUser;
 import com.qinli.pojo.User;
 import com.qinli.service.Login;
 import com.qinli.util.JWTUtils;
@@ -29,27 +29,26 @@ public class LoginController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Map<String , Object> loginJud(@RequestHeader("Content-Type")String ct, String username, String pwd){
-        Map<String , Object> json = new HashMap<>();
-        final User user = new User(username, pwd);
+    public LoginUser loginJud(@RequestHeader("Content-Type")String ct, String username, String pwd){
+        LoginUser loginUser = new LoginUser();
+        User user = null;
         if (ct.equals("application/x-www-form-urlencoded")){
             if(login.isExist(username)){
-                if (login.selectUser(username, pwd) != null){
-                    json.put("status" , 200);
-                    class LoginUser {
-                        String token = JWTUtils.getToken(user);
-                        String authority = user.getAuthority();
-                    }
-                    json.put("user" , new LoginUser());
+                if ((user = login.selectUser(username, pwd)) != null){
+                    loginUser.setStatus(200);
+                    Map<String , String> userInfo = new HashMap<>();
+                    userInfo.put("token" , JWTUtils.getToken(username , user.getAuthority()));
+                    userInfo.put("authority" , user.getAuthority());
+                    loginUser.setUserStatus(userInfo);
                 }else{
-                    json.put("status" , 500);
+                    loginUser.setStatus(500);
                 }
             }else{
-                json.put("status" , 400);
+                loginUser.setStatus(400);
             }
         }else{
-            json.put("status" , 500);
+            loginUser.setStatus(500);
         }
-        return json;
+        return loginUser;
     }
 }

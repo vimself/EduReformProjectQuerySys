@@ -11,18 +11,6 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!-- 配置拦截器 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <!-- 要拦截的方法-->
-            <mvc:mapping path="/EduReformProjectQuerySys"/>
-            <mvc:exclude-mapping path="/EduReformProjectQuerySys/login"/>
-            <!-- 拦截器对象 -->
-            <bean class="com.qinli.interceptor.tokenInterceptor"></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
-
-
     <!--数据库连接-->
     <context:property-placeholder location="classpath:dbconfig.properties"/>
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">

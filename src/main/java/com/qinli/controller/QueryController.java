@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 请求根据各关键字项目列表
+ * 根据各关键字请求项目列表
  */
 @Controller
 public class QueryController {
@@ -23,9 +23,15 @@ public class QueryController {
     @Autowired
     Query query;
 
+    /**
+     * 查询项目
+     * @param query_by 查询选项，0所有；1根据部门查询；2根据工资号查询；3根据主持人姓名查询；4根据项目号查询
+     * @param key 查询关键字
+     * @return 查询结果的List对象
+     */
     @RequestMapping(value = "query")
     @ResponseBody
-    public Map<String, List<Project>> queryForList(int query_by , String key , HttpServletResponse response) throws IOException {
+    public Map<String, List<Project>> queryForList(int query_by , String key) {
         List<Project> result = null;
         Map<String , List<Project>> json = new HashMap();
 

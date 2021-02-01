@@ -8,6 +8,7 @@ import java.util.Map;
 /**
  * @Author Cambria
  * @creat 2021/1/22 15:09
+ * 由前端上传所得的未经格式化的project对象封装
  */
 public class RawUploadProject {
     private String id;

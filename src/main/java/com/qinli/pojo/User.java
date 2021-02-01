@@ -3,7 +3,7 @@ package com.qinli.pojo;
 /**
  * @author supermantx
  * @time 2021/1/25 12:37
- * 登陆用户对象
+ * 用户信息
  */
 public class User {
     String username;

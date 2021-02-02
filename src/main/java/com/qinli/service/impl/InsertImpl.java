@@ -28,4 +28,14 @@ public class InsertImpl implements Insert {
         }
         return true;
     }
+
+    @Override
+    public boolean insertOne(RawUploadProject rawUploadProject) {
+        try {
+            projectMapper.insertOne(rawUploadProject);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }

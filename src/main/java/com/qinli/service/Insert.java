@@ -10,5 +10,6 @@ import com.qinli.pojo.RawUploadProject;
 public interface Insert {
 
     boolean insertOne(Project project);
+    boolean insertOne(RawUploadProject rawUploadProject);
 
 }

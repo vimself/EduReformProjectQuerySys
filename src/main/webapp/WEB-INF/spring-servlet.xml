@@ -12,10 +12,10 @@
     <!-- 配置拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            &lt;!&ndash; 要拦截的方法&ndash;&gt;
+            <!--要拦截的方法-->
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
-            &lt;!&ndash; 拦截器对象 &ndash;&gt;
+            <!--拦截器对象-->
             <bean class="com.qinli.interceptor.TokenInterceptor"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
@@ -28,7 +28,7 @@
 
     <!--文件上传解析-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize" value="52428800"/>
+        <property name="maxUploadSize" value="52428800"/> <!--52428800 Byte= 50*1024*1024 Byte = 50MB-->
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
 

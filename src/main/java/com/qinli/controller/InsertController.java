@@ -4,6 +4,7 @@ import com.qinli.pojo.Project;
 import com.qinli.pojo.RawUploadProject;
 import com.qinli.service.Insert;
 import com.qinli.util.HSSFUtil;
+import com.qinli.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,7 +66,7 @@ public class InsertController {
         if (uploadFile.getSize() > 0 && uploadFile.getOriginalFilename().endsWith("xls")) {
             //以当前毫秒数命名文件，防止重名
             String filename = String.valueOf(System.currentTimeMillis());
-            String path = "D:\\SynologyDrive\\JavaProjects\\EduReformProjectQuerySys\\src\\main\\resources\\xls\\" + filename + ".xls";
+            String path = Utils.getProjectPath() + File.pathSeparator + "xls" + File.pathSeparator + filename + ".xls";
 
             uploadFile.transferTo(new File(path));
 

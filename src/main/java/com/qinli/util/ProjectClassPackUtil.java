@@ -23,19 +23,14 @@ public class ProjectClassPackUtil {
     public static List<Project> projectClassPack(List<Project> projects , ProjectMapper projectMapper){
         //使用迭代器遍历所有的project对象
         Iterator<Project> i = projects.iterator();
-//        要操作的project对象
-        Project tempp;
-//        当前对象所对应的member字段在数据库里记录的内容
-        String temps;
 
-        ArrayList temppMember = new ArrayList();
         while (i.hasNext()){
             //读入一个project对象
-            tempp = i.next();
+            Project tempp = i.next();
             //重置缓存的memberList
-            temppMember.clear();
+            List<Map<String , String>> temppMember = new ArrayList();
             //从数据库中查询到字符串形式的member记录
-            temps = projectMapper.selectMember(tempp.getId());
+            String temps = projectMapper.selectMember(tempp.getId());
 
             //切分字符串，存入List
             String[] tempa = temps.split("/");

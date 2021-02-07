@@ -6,10 +6,7 @@ import com.qinli.service.Login;
 import com.qinli.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,11 +25,11 @@ public class LoginController {
     Login login;
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public LoginUser loginJud(@RequestHeader("Content-Type")String ct, String username, String pwd){
+    @RequestMapping(value = "/login")
+    public LoginUser loginJud(String username , String pwd){
         LoginUser loginUser = new LoginUser();
         User user = null;
-        if (ct.equals("application/x-www-form-urlencoded")){
+        if (true/*ct.equals("application/x-www-form-urlencoded")*/){
             if(login.isExist(username)){
                 if ((user = login.selectUser(username, pwd)) != null){
                     loginUser.setStatus(200);

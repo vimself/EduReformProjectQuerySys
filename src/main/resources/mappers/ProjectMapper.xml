@@ -19,6 +19,10 @@
     select * from project where id = #{id}
     </select>
 
+    <select id="selectBySalaryNum" resultType="com.qinli.pojo.Project">
+        select * from project where member like concat('%' , #{member} , '%')
+    </select>
+
     <insert id="insertOne" parameterType="com.qinli.pojo.RawUploadProject">
         insert into project (id, title, host, department, member, start_time, end_time, project_status, funds, level, host_school, coop_school, guide_id, recommend, code)
         values (#{id} , #{title} , #{host} , #{department} , #{member} , #{start_time} , #{end_time} , #{project_status} , #{funds} , #{level} , #{host_school} , #{coop_school} , #{guide_id} , #{recommend} , #{code})

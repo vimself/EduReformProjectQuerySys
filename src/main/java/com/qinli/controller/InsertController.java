@@ -38,9 +38,9 @@ public class InsertController {
      * @param project 要添加的项目
      * @return 操作状态
      */
-    @RequestMapping(value = "insert")
+    @RequestMapping(value = "insert" )
     @ResponseBody
-    Map<String , Integer> insert(@RequestBody Project project){
+    Map<String , Integer> insert(Project project){
         boolean result = insert.insertOne(project);
 
         Map<String , Integer> json = new HashMap<>();
@@ -51,24 +51,24 @@ public class InsertController {
 
     /**
      * 文件上传至服务端并从文件中读取项目信息，存入数据库
-     * @param uploadFile 上传的文件
+     * @param file 上传的文件
      * @return 操作状态
      * @throws IOException 讲道理应该不会抛出来这个错误
      */
     @RequestMapping(value = "uploadXls")
     @ResponseBody
-    Map<String , Integer> uploadXls(MultipartFile uploadFile) throws IOException {
+    Map<String , Integer> uploadXls(MultipartFile file) throws IOException {
         Map <String , Integer> json = new HashMap<>();
         //标记操作是否成功
         boolean flag = false;
 
         //仅文件大小大于0且后缀为xls才会执行保存和读取操作
-        if (uploadFile.getSize() > 0 && uploadFile.getOriginalFilename().endsWith("xls")) {
+        if (file.getSize() > 0 && file.getOriginalFilename().endsWith("xls")) {
             //以当前毫秒数命名文件，防止重名
             String filename = String.valueOf(System.currentTimeMillis());
             String path = Utils.getProjectPath() + File.pathSeparator + "xls" + File.pathSeparator + filename + ".xls";
 
-            uploadFile.transferTo(new File(path));
+            file.transferTo(new File(path));
 
             //读取xls文件内容，每一行为一个project对象
             List<RawUploadProject> projects = HSSFUtil.readXls(path);

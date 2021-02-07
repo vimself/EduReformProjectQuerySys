@@ -32,10 +32,18 @@ public class LoginImpl implements Login {
     @Override
     public User selectUser(String username, String pwd) {
         User user = null;
+        boolean isExist = true;
         try {
             user = userMapper.isExist(username);
-        } finally {
-            return user;
+        } catch (Exception e){
+            isExist = false;
         }
+
+        if (!isExist) {
+            return null;
+        }
+
+        user = userMapper.selectUser(username, pwd);
+        return user;
     }
 }

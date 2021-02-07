@@ -25,14 +25,12 @@ public class DeleteController {
      */
     @RequestMapping(value = "delete")
     @ResponseBody
-    Map<String , Integer> delete(String[] del){
+    Map<String , Integer> delete(String del){
         Map<String , Integer> json = new HashMap<String, Integer>();
 
-        for (String s : del){
-            if (!delete.deleteById(s)) {
-                json.put("status" , 500);
-                return json;
-            }
+        if (!delete.deleteById(del)) {
+            json.put("status" , 500);
+            return json;
         }
 
         json.put("status" , 200);

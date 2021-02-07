@@ -11,7 +11,6 @@ public interface ProjectMapper {
     List<Project> selectBySalaryNum(String salaryNum);
     List<Project> selectByName(String name);
     List<Project> selectById(String id);
-
     boolean insertOne(RawUploadProject rawUploadProject);
 
     boolean updateOne(RawUploadProject rawUploadProject);

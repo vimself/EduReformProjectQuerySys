@@ -4,9 +4,11 @@ import com.qinli.pojo.Project;
 import com.qinli.service.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,9 +33,9 @@ public class QueryController {
      */
     @RequestMapping(value = "query")
     @ResponseBody
-    public Map<String, List<Project>> queryForList(int query_by , String key) {
+    public Map<String, Object> queryForList(int query_by , String key) {
         List<Project> result = null;
-        Map<String , List<Project>> json = new HashMap();
+        Map<String , Object> json = new HashMap();
 
         switch (query_by){
             case 0:
@@ -61,6 +63,7 @@ public class QueryController {
         }
 
         json.put("list" , result);
+        json.put("status" , 200);
 
         return json;
     }

@@ -10,6 +10,11 @@
     <context:component-scan base-package="com.qinli">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    
+    <mvc:cors>
+        <mvc:mapping path="/**" allowed-origins="*" allow-credentials="true" max-age="1800" allowed-methods="GET,POST,PUT,DELETE,PATCH,OPTIONS" />
+        <mvc:mapping path="/**/**" allowed-origins="*" allow-credentials="true" max-age="1800" allowed-methods="GET,POST,PUT,DELETE,PATCH,OPTIONS"/>
+    </mvc:cors>
 
     <!--数据库连接-->
     <context:property-placeholder location="classpath:dbconfig.properties"/>

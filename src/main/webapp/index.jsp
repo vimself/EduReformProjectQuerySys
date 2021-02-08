@@ -7,7 +7,9 @@
     <form name="Form2" action="uploadXls" method="post"  enctype="multipart/form-data">
     <h1>使用spring mvc提供的类的方法上传文件</h1>
     <input type="file" name="uploadFile">
-    <input type="submit" value="upload"/>
+    <input type="submit" value="upload"/><br/>
+
+        <a href="xls/template.xls">download</a>
 </form>
 </body>
 </html>

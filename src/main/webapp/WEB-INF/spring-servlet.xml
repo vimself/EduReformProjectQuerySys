@@ -9,20 +9,22 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+
+
     <!-- 配置拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
             <!--要拦截的方法-->
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
-            <mvc:exclude-mapping path="/"/>
+            <mvc:exclude-mapping path="/**/**"/>
             <!--拦截器对象-->
             <bean class="com.qinli.interceptor.TokenInterceptor"></bean>
         </mvc:interceptor>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
-            <mvc:exclude-mapping path="/"/>
+            <mvc:exclude-mapping path="/**/**"/>
             <mvc:exclude-mapping path="/query"/>
             <bean class="com.qinli.interceptor.AuthorityInterceptor"/>
         </mvc:interceptor>

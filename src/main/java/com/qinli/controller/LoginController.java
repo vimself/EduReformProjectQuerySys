@@ -29,6 +29,7 @@ public class LoginController {
     public LoginUser loginJud(String username , String pwd){
         LoginUser loginUser = new LoginUser();
         User user = null;
+        //删除了对于回传数据类型的验证
         if (true/*ct.equals("application/x-www-form-urlencoded")*/){
             if(login.isExist(username)){
                 if ((user = login.selectUser(username, pwd)) != null){

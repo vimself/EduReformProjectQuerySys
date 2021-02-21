@@ -14,6 +14,10 @@
     <!-- 配置拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.qinli.interceptor.CORSInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
             <!--要拦截的方法-->
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>

@@ -34,6 +34,7 @@ public class HSSFUtil {
 
         boolean flag = true;
         for (int i = 1; i <= lastRowNum; i++) {
+            System.out.println("lastRowNum:" + lastRowNum);
             HSSFRow row = sheet.getRow(i);
 
             if (row.getCell(0).toString().equals("")) {
@@ -63,6 +64,7 @@ public class HSSFUtil {
         }
 
         if (!flag) {
+            //System.out.println("JXGG");
             return null;
         }
 

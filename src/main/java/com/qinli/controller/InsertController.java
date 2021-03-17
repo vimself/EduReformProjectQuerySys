@@ -3,6 +3,7 @@ package com.qinli.controller;
 import com.qinli.pojo.Project;
 import com.qinli.pojo.RawUploadProject;
 import com.qinli.service.Insert;
+import com.qinli.util.CSVUtils;
 import com.qinli.util.HSSFUtil;
 import com.qinli.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author Cambria
@@ -61,6 +59,12 @@ public class InsertController {
     @RequestMapping(value = "uploadXls")
     @ResponseBody
     Map<String, Integer> uploadXls(MultipartFile file) throws IOException {
+
+        //SB前端不知道改接口，上传csv写作上传xls
+        if (true){
+            return uploadCsv(file);
+        }
+
         Map<String, Integer> json = new HashMap<>();
         //标记操作是否成功
         boolean flag = false;
@@ -69,7 +73,7 @@ public class InsertController {
         if (file.getSize() > 0 && file.getOriginalFilename().endsWith("xls")) {
             //以当前毫秒数命名文件，防止重名
             String filename = String.valueOf(System.currentTimeMillis());
-            String path = Utils.getProjectPath() + File.pathSeparator + "xls" + File.pathSeparator + filename + ".xls";
+            String path =  Utils.getProjectPath() + File.pathSeparator + "xls" + File.pathSeparator + filename + ".xls";
 
             file.transferTo(new File(path));
 
@@ -145,4 +149,55 @@ public class InsertController {
         return json;
 
     }*/
+
+    /**
+     * 前端终于答应使用csv格式上传数据了
+     * @param file 上传的文件
+     * @return 操作状态
+     * @throws IOException
+     */
+    @RequestMapping(value = "uploadCsv")
+    @ResponseBody
+    Map<String, Integer> uploadCsv(MultipartFile file) throws IOException {
+        Map<String, Integer> json = new HashMap<>();
+        //标记操作是否成功
+        boolean flag = false;
+
+        //仅文件大小大于0且后缀为xls才会执行保存和读取操作
+        if (file.getSize() > 0 && file.getOriginalFilename().endsWith("csv")) {
+            //以当前毫秒数命名文件，防止重名
+            String filename = String.valueOf(System.currentTimeMillis());
+            String path =  Utils.getProjectPath() + File.pathSeparator + "csv" + File.pathSeparator + filename + ".csv";
+
+            file.transferTo(new File(path));
+
+            //读取csv文件内容，每一行为一个project对象
+            //System.out.println("开始解析");
+            List<RawUploadProject> projects = CSVUtils.readCsv(path);
+            //System.out.println("解析完成");
+            if (projects == null) {
+                //System.out.println("空内容");
+                json.put("status" , 500);
+                return json;
+            }
+            //System.out.println(projects.toString());
+
+            //依次将每个project存入数据库中
+            Iterator<RawUploadProject> iterator = projects.iterator();
+            while (iterator.hasNext()) {
+                RawUploadProject rawUploadProject = iterator.next();
+                //System.out.println(rawUploadProject.toString());
+                if (!insert.insertOne(rawUploadProject)) {
+                    //System.out.println("GG");
+                    json.put("status", 500);
+                    return json;
+                }
+            }
+
+            flag = true;
+        }
+
+        json.put("status", flag ? 200 : 500);
+        return json;
+    }
 }

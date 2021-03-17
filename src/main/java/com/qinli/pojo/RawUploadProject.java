@@ -27,6 +27,24 @@ public class RawUploadProject {
     private String recommend;
     private String code;
 
+    public RawUploadProject(String id, String title, String host, String department, String member, String start_time, String end_time, String project_status, String funds, String level, String host_school, String coop_school, String guide_id, String recommend, String code) {
+        this.id = id;
+        this.title = title;
+        this.host = host;
+        this.department = department;
+        this.member = member;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.project_status = project_status;
+        this.funds = funds;
+        this.level = level;
+        this.host_school = host_school;
+        this.coop_school = coop_school;
+        this.guide_id = guide_id;
+        this.recommend = recommend;
+        this.code = code;
+    }
+
     public RawUploadProject(Project project) {
         id = project.getId();
         title = project.getTitle();
